@@ -30,7 +30,7 @@ const Home = () => {
   return (
     <div className="flex flex-col w-full  bg-gradient-to-r from-zinc-800 to-zinc-900  items-center p-2  gap-4 ">
       <div className=" mobile desktop flex gap-6 flex-col mt-12 items-center justify-center  w-72">
-        <img className="rounded-full " src="assets/perfil.jpg" alt="" />
+        <img className="rounded-full " src="/perfil.jpg" alt="" />
         <h1 className="  text-white text-xl font-bold ">
           Desenvolvedor Full-stack
         </h1>
