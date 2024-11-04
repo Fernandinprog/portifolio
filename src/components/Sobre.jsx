@@ -27,14 +27,6 @@ gsap.to(".apresentacao", {
   ease: "power1.in",
 });
 const Sobre = () => {
-  const handleDownload = () => {
-    const pdfpath = "/Currículo_.pdf";
-    const link = document.createElement("a");
-    link.href = pdfpath;
-    link.download = "Currículo_.pdf";
-    document.body.appendChild(link);
-    console.log(link);
-  };
   return (
     <div className="flex flex-col w-full   items-center bg-gradient-to-r from-zinc-800 to-zinc-900  p-2  gap-4 h-[600px]">
       <h1 className="text-3xl text-white">Sobre mim</h1>
@@ -47,11 +39,11 @@ const Sobre = () => {
           mesmo, tenho hiperfoco quando o assunto me prende, além de ser
           comunicativo.
         </p>
-        <button
-          onClick={handleDownload}
-          className="flex gap-2 items-center justify-center mt-4 bg-black text-white p-2 rounded-md"
-        >
-          Curriculo <ArrowBigDown />
+        <button className="flex gap-2 items-center justify-center mt-4 bg-black text-white p-2 rounded-md">
+          <a href="/public/Currículo_.pdf" download>
+            Curriculo
+          </a>
+          <ArrowBigDown />
         </button>
       </div>
       <span className="w-full  h-[1px] mt-4 bg-black  "></span>

@@ -36,12 +36,11 @@ const Home = () => {
         </h1>
       </div>
       <div className="flex mobile desktop gap-6 items-center p-4">
-        <Linkedin
-          href="https://www.linkedin.com/in/fernando-sandes-de-moura-7739911b2/"
-          className="text-white text-2xl cursor-pointer"
-        ></Linkedin>
+        <Linkedin className="text-white text-2xl cursor-pointer">
+          <a href="https://www.linkedin.com/in/fernando-sandes-de-moura-7739911b2/"></a>
+        </Linkedin>
         <Github className="text-white text-2xl cursor-pointer">
-          <a href=""></a>
+          <a href="https://github.com/Fernandinprog"></a>
         </Github>
         <X className="text-white text-4xl cursor-pointer">
           <a href="https://x.com/Omestredelas"></a>
