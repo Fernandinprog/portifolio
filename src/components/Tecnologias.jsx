@@ -18,21 +18,10 @@ const Tecnologias = () => {
     });
     gsap.to(".image", {
       x: 2000,
-      duration: 19,
+      duration: 15,
       repeat: -1,
       ease: "linear",
-    });
-  }, []);
-  useEffect(() => {
-    gsap.from(".image2", {
-      x: -1500,
-      delay: 4,
-    });
-    gsap.to(".image2", {
-      x: 2000,
-      duration: 20,
-      repeat: -1,
-      ease: "linearin",
+      
     });
   }, []);
 
@@ -47,15 +36,6 @@ const Tecnologias = () => {
       <img className="w-14 h-14 image " src={HtmlLogo} alt="" />
       <img className="w-14 h-14 image bg-white " src={NextLogo} alt="" />
       <img className="w-14 h-14 image " src={PostgresLogo} alt="" />
-      <img className="w-14 h-14 image2 " src={Logojavascript} alt="" />
-      <img className="w-14 h-14 image2 " src={ReactLogo} alt="" />
-      <img className="w-14 h-14 image2 " src={NodeLogo} alt="" />
-      <img className="w-14 h-14 image2 " src={TsLogo} alt="" />
-      <img className="w-14 h-14 image2 " src={TailwindLogo} alt="" />
-      <img className="w-14 h-14 image2 " src={CssLogo} alt="" />
-      <img className="w-14 h-14 image2 " src={HtmlLogo} alt="" />
-      <img className="w-14 h-14 image2 bg-white " src={NextLogo} alt="" />
-      <img className="w-14 h-14 image2 " src={PostgresLogo} alt="" />
     </div>
   );
 };
