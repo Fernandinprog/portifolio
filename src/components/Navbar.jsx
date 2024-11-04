@@ -1,6 +1,25 @@
 import { MenuIcon } from "lucide-react";
 import { useState } from "react";
 
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', function(event) {
+      event.preventDefault(); // Evita o comportamento padrão do link
+
+      const targetId = this.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetId);
+
+      if (targetElement) {
+          targetElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+          });
+      }
+  });
+}); 
+var navtransparent = "bg-transparent"
+if (window.scrollY > 100) {
+  navtransparent = "bg-zinc-900"
+}
 
 const NavBar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -9,7 +28,7 @@ const NavBar = () => {
       setIsOpen(!isOpen);
     };
     return ( 
-        <nav className="bg-zinc-900 p-4">
+        <nav onScroll={navtransparent} className="bg-zinc-900 p-4 fixed top-0 left-0 right-0 z-50">
         <div className="container mx-auto flex justify-between items-center">
           <div className="text-white text-xl font-bold">Nando/Dev</div>
   
