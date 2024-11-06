@@ -28,21 +28,21 @@ const Home = () => {
   });
 
   return (
-    <div className="flex flex-col w-full  bg-gradient-to-r from-zinc-800 to-zinc-900  items-center p-2  gap-4 ">
-      <div className=" mobile desktop flex gap-6 flex-col mt-12 items-center justify-center  w-72">
-        <img className="rounded-full mt-8 " src={FotoPerfil} alt="" />
-        <h1 className="  text-white text-xl font-bold ">
+    <div className="flex w-full flex-col items-center gap-4 bg-gradient-to-r from-zinc-800 to-zinc-900 p-2">
+      <div className="mobile desktop mt-12 flex w-72 flex-col items-center justify-center gap-6">
+        <img className="mt-8 rounded-full" src={FotoPerfil} alt="" />
+        <h1 className="text-xl font-bold text-white">
           Desenvolvedor Full-stack
         </h1>
       </div>
-      <div className="flex mobile desktop gap-6 items-center p-4">
-        <Linkedin className="text-white text-2xl cursor-pointer">
+      <div className="mobile desktop flex items-center gap-6 p-4">
+        <Linkedin className="cursor-pointer text-2xl text-white">
           <a href="https://www.linkedin.com/in/fernando-sandes-de-moura-7739911b2/"></a>
         </Linkedin>
-        <Github className="text-white text-2xl cursor-pointer">
+        <Github className="cursor-pointer text-2xl text-white">
           <a href="https://github.com/Fernandinprog"></a>
         </Github>
-        <X className="text-white text-4xl cursor-pointer">
+        <X className="cursor-pointer text-4xl text-white">
           <a href="https://x.com/Omestredelas"></a>
         </X>
       </div>

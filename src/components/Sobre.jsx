@@ -28,9 +28,9 @@ gsap.to(".apresentacao", {
 });
 const Sobre = () => {
   return (
-    <div className="flex flex-col w-full   items-center bg-gradient-to-r from-zinc-800 to-zinc-900  p-2  gap-4 h-[600px]">
+    <div className="flex h-[600px] w-full flex-col items-center gap-4 bg-gradient-to-r from-zinc-800 to-zinc-900 p-2">
       <h1 className="text-3xl text-white">Sobre mim</h1>
-      <div className="w-full flex flex-col text-start p-4 lg:w-1/2 text-white  rounded-md">
+      <div className="flex w-full flex-col rounded-md p-4 text-start text-white lg:w-1/2">
         <p className="apresentacao text-xl">
           Meu nome é Fernando, prazer. Sou um cara fascinado em tecnologia meu
           sonho é viver disso, um dia ainda quero escrever um livro e fazer algo
@@ -39,19 +39,19 @@ const Sobre = () => {
           mesmo, tenho hiperfoco quando o assunto me prende, além de ser
           comunicativo.
         </p>
-        <button className="flex gap-2 items-center justify-center mt-4 bg-black text-white p-2 rounded-md">
+        <button className="mt-4 flex items-center justify-center gap-2 rounded-md bg-black p-2 text-white">
           <a href="/public/Currículo_.pdf" download>
             Curriculo
           </a>
           <ArrowBigDown />
         </button>
       </div>
-      <span className="w-full  h-[1px] mt-4 bg-black  "></span>
-      <div className="w-full flex flex-col p-2  gap-6 items-center">
+      <span className="mt-4 h-[1px] w-full bg-black"></span>
+      <div className="flex w-full flex-col items-center gap-6 p-2">
         <h1 className="text-3xl text-white">Tecnologias</h1>
         <Tecnologias />
       </div>
-      <span className="w-full  h-[1px] mt-4 bg-black  "></span>
+      <span className="mt-4 h-[1px] w-full bg-black"></span>
     </div>
   );
 };

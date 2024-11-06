@@ -21,21 +21,20 @@ const Tecnologias = () => {
       duration: 15,
       repeat: -1,
       ease: "linear",
-      
     });
   }, []);
 
   return (
-    <div className=" overflow-hidden flex w-full justify-center gap-12">
-      <img className="w-14 h-14 image " src={Logojavascript} alt="" />
-      <img className="w-14 h-14 image " src={ReactLogo} alt="" />
-      <img className="w-14 h-14 image " src={NodeLogo} alt="" />
-      <img className="w-14 h-14 image " src={TsLogo} alt="" />
-      <img className="w-14 h-14 image " src={TailwindLogo} alt="" />
-      <img className="w-14 h-14 image " src={CssLogo} alt="" />
-      <img className="w-14 h-14 image " src={HtmlLogo} alt="" />
-      <img className="w-14 h-14 image bg-white " src={NextLogo} alt="" />
-      <img className="w-14 h-14 image " src={PostgresLogo} alt="" />
+    <div className="flex w-full justify-center gap-12 overflow-hidden">
+      <img className="image h-14 w-14" src={Logojavascript} alt="" />
+      <img className="image h-14 w-14" src={ReactLogo} alt="" />
+      <img className="image h-14 w-14" src={NodeLogo} alt="" />
+      <img className="image h-14 w-14" src={TsLogo} alt="" />
+      <img className="image h-14 w-14" src={TailwindLogo} alt="" />
+      <img className="image h-14 w-14" src={CssLogo} alt="" />
+      <img className="image h-14 w-14" src={HtmlLogo} alt="" />
+      <img className="image h-14 w-14 bg-white" src={NextLogo} alt="" />
+      <img className="image h-14 w-14" src={PostgresLogo} alt="" />
     </div>
   );
 };
