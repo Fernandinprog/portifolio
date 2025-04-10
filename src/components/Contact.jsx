@@ -2,62 +2,144 @@ import { Bird, Mail, User } from "lucide-react";
 import TelImage from "/email.jpg";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useState } from "react";
+
 const Contact = () => {
-  function handleClick(event) {
-    event.preventDefault();
+  const [formData, setFormData] = useState({
+    nome: "",
+    sobrenome: "",
+    email: "",
+    mensagem: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Validações básicas
+    if (
+      !formData.nome ||
+      !formData.sobrenome ||
+      !formData.email ||
+      !formData.mensagem
+    ) {
+      toast.error("Por favor, preencha todos os campos!");
+      return;
+    }
+
+    if (!formData.email.includes("@")) {
+      toast.error("Por favor, insira um email válido!");
+      return;
+    }
+
+    // Aqui você pode adicionar a lógica para enviar o formulário
     toast.success("Sua mensagem foi enviada com sucesso!");
-  }
+    setFormData({ nome: "", sobrenome: "", email: "", mensagem: "" });
+  };
 
   return (
-    <div className="flex h-[1000px] w-full flex-col items-center gap-4 bg-gradient-to-t from-zinc-800 to-zinc-900 p-2 lg:h-[800px]">
-      <ToastContainer />
-      <h1 className="mt-4 text-3xl font-bold text-white">Contato</h1>
-      <div className="mb-4 mt-12 flex w-full flex-col items-center justify-center gap-4 lg:flex-row">
-        <img className="w-[400px] rounded-md" src={TelImage} />
-        <form className="mt-8 flex w-[400px] flex-col items-center gap-4 rounded-lg bg-slate-200 p-10 shadow-2xl lg:w-[600px]">
-          <div className="flex w-full items-center justify-center gap-4">
-            <label className="text-xl font-bold text-white">
-              <User className="text-black" />
-            </label>
-            <input
-              className="h-10 w-[50%] rounded-md p-2 text-black outline-none"
-              type="text"
-              placeholder="Digite seu nome"
-            />
-            <input
-              className="h-10 w-[50%] rounded-md p-2 text-black outline-none"
-              type="text"
-              placeholder="Seu sobrenome"
+    <section
+      id="contact"
+      className="w-full bg-gray-100 py-20 dark:bg-gradient-to-t dark:from-zinc-800 dark:to-zinc-900"
+    >
+      <div className="container mx-auto px-4">
+        <ToastContainer position="top-right" />
+
+        <h2 className="mb-12 text-center text-3xl font-bold text-zinc-900 md:text-4xl dark:text-white">
+          Contato
+        </h2>
+
+        <div className="flex flex-col items-center gap-12 lg:flex-row lg:items-start">
+          <div className="w-full lg:w-1/2">
+            <img
+              className="w-full rounded-lg shadow-xl"
+              src={TelImage}
+              alt="Imagem de contato"
             />
           </div>
-          <div className="mt-4 flex w-full items-center justify-center gap-4">
-            <label className="text-xl font-bold text-white">
-              <Mail className="text-black" />
-            </label>
-            <input
-              className="h-10 w-full rounded-md p-2 text-black outline-none"
-              type="text"
-              placeholder="Digite seu email"
-            />
-          </div>
-          <div className="flex w-full items-center justify-center gap-4">
-            <label className="text-xl font-bold text-white">
-              <Bird className="text-black" />
-            </label>
-            <textarea className="mt-4 w-full rounded-md"></textarea>
-          </div>
-          <div className="flex w-full items-center justify-center border-black">
+
+          <form
+            onSubmit={handleSubmit}
+            className="w-full max-w-2xl rounded-lg bg-white/80 p-8 shadow-xl backdrop-blur-sm dark:bg-zinc-800/50"
+          >
+            <div className="grid gap-6 md:grid-cols-2">
+              <div className="flex flex-col gap-2">
+                <label className="flex items-center gap-2 text-zinc-900 dark:text-white">
+                  <User className="h-5 w-5 text-fuchsia-500" />
+                  Nome
+                </label>
+                <input
+                  name="nome"
+                  value={formData.nome}
+                  onChange={handleChange}
+                  className="rounded-md border border-gray-300 bg-white p-3 text-zinc-900 outline-none transition-colors focus:border-fuchsia-500 dark:border-zinc-600 dark:bg-zinc-700 dark:text-white"
+                  type="text"
+                  placeholder="Digite seu nome"
+                />
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <label className="flex items-center gap-2 text-zinc-900 dark:text-white">
+                  <User className="h-5 w-5 text-fuchsia-500" />
+                  Sobrenome
+                </label>
+                <input
+                  name="sobrenome"
+                  value={formData.sobrenome}
+                  onChange={handleChange}
+                  className="rounded-md border border-gray-300 bg-white p-3 text-zinc-900 outline-none transition-colors focus:border-fuchsia-500 dark:border-zinc-600 dark:bg-zinc-700 dark:text-white"
+                  type="text"
+                  placeholder="Seu sobrenome"
+                />
+              </div>
+            </div>
+
+            <div className="mt-6 flex flex-col gap-2">
+              <label className="flex items-center gap-2 text-zinc-900 dark:text-white">
+                <Mail className="h-5 w-5 text-fuchsia-500" />
+                Email
+              </label>
+              <input
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                className="rounded-md border border-gray-300 bg-white p-3 text-zinc-900 outline-none transition-colors focus:border-fuchsia-500 dark:border-zinc-600 dark:bg-zinc-700 dark:text-white"
+                type="email"
+                placeholder="Digite seu email"
+              />
+            </div>
+
+            <div className="mt-6 flex flex-col gap-2">
+              <label className="flex items-center gap-2 text-zinc-900 dark:text-white">
+                <Bird className="h-5 w-5 text-fuchsia-500" />
+                Mensagem
+              </label>
+              <textarea
+                name="mensagem"
+                value={formData.mensagem}
+                onChange={handleChange}
+                className="h-32 rounded-md border border-gray-300 bg-white p-3 text-zinc-900 outline-none transition-colors focus:border-fuchsia-500 dark:border-zinc-600 dark:bg-zinc-700 dark:text-white"
+                placeholder="Digite sua mensagem"
+              />
+            </div>
+
             <button
-              onClick={handleClick}
-              className="w-[40%] rounded-md bg-blue-500 px-4 py-2 font-bold text-white duration-150 hover:bg-blue-700"
+              type="submit"
+              className="mt-8 w-full rounded-md bg-fuchsia-500 px-6 py-3 font-semibold text-white transition-colors hover:bg-fuchsia-600"
             >
-              Enviar
+              Enviar Mensagem
             </button>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
-      <div className="flex w-full items-center justify-center gap-4 rounded-md p-4 text-center text-white"></div>
-    </div>
+    </section>
   );
 };
 

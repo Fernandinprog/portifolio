@@ -1,5 +1,5 @@
 import gsap from "gsap";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Logojavascript from "/javascript-logo.png";
 import ReactLogo from "/React-icon.svg.png";
 import NodeLogo from "/Node.js-logo.png";
@@ -10,32 +10,71 @@ import HtmlLogo from "/HTML5_logo.png";
 import NextLogo from "/next-js-logo.png";
 import PostgresLogo from "/PostgreSQL_logo.png";
 
+const tecnologias = [
+  { src: Logojavascript, alt: "JavaScript" },
+  { src: ReactLogo, alt: "React" },
+  { src: NodeLogo, alt: "Node.js" },
+  { src: TsLogo, alt: "TypeScript" },
+  { src: TailwindLogo, alt: "Tailwind CSS" },
+  { src: CssLogo, alt: "CSS3" },
+  { src: HtmlLogo, alt: "HTML5" },
+  { src: NextLogo, alt: "Next.js" },
+  { src: PostgresLogo, alt: "PostgreSQL" },
+];
+
 const Tecnologias = () => {
+  const containerRef = useRef(null);
+
   useEffect(() => {
-    gsap.from(".image", {
-      x: -1500,
-      delay: 3,
-    });
-    gsap.to(".image", {
-      x: 2000,
-      duration: 15,
+    const container = containerRef.current;
+    if (!container) return;
+
+    const containerWidth = container.offsetWidth;
+    const scrollWidth = container.scrollWidth;
+    const duration = (scrollWidth / containerWidth) * 20;
+
+    gsap.to(container, {
+      x: -scrollWidth + containerWidth,
+      duration: duration,
       repeat: -1,
-      ease: "linear",
+      ease: "none",
     });
   }, []);
 
   return (
-    <div className="flex w-full justify-center gap-12 overflow-hidden">
-      <img className="image h-14 w-14" src={Logojavascript} alt="" />
-      <img className="image h-14 w-14" src={ReactLogo} alt="" />
-      <img className="image h-14 w-14" src={NodeLogo} alt="" />
-      <img className="image h-14 w-14" src={TsLogo} alt="" />
-      <img className="image h-14 w-14" src={TailwindLogo} alt="" />
-      <img className="image h-14 w-14" src={CssLogo} alt="" />
-      <img className="image h-14 w-14" src={HtmlLogo} alt="" />
-      <img className="image h-14 w-14 bg-white" src={NextLogo} alt="" />
-      <img className="image h-14 w-14" src={PostgresLogo} alt="" />
+    <div className="relative w-full overflow-hidden">
+      <div ref={containerRef} className="flex gap-8 md:gap-12">
+        {tecnologias.map((tech, index) => (
+          <div key={index} className="flex flex-col items-center gap-2">
+            <img
+              className="h-12 w-12 transition-transform hover:scale-110 md:h-14 md:w-14"
+              src={tech.src}
+              alt={tech.alt}
+            />
+            <span className="text-sm text-gray-600 dark:text-gray-300">
+              {tech.alt}
+            </span>
+          </div>
+        ))}
+        {/* Duplicar tecnologias para criar efeito infinito */}
+        {tecnologias.map((tech, index) => (
+          <div
+            key={`duplicate-${index}`}
+            className="flex flex-col items-center gap-2"
+          >
+            <img
+              className="h-12 w-12 transition-transform hover:scale-110 md:h-14 md:w-14"
+              src={tech.src}
+              alt={tech.alt}
+            />
+            <span className="text-sm text-gray-600 dark:text-gray-300">
+              {tech.alt}
+            </span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
+
 export default Tecnologias;

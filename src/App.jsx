@@ -9,13 +9,15 @@ import Sobre from "./components/Sobre";
 function App() {
   return (
     <>
-      <div className=" w-full  gap-4 h-screen">
+      <div className="flex min-h-screen w-full flex-col gap-4 bg-white text-zinc-900 dark:bg-zinc-900 dark:text-white">
         <NavBar />
-        <Home />
-        <Sobre/>
-        <Cardproject/>
-        <Contact/>
-        <Footer/>
+        <main className="flex flex-col gap-8 px-4 md:px-8 lg:px-16">
+          <Home />
+          <Sobre />
+          <Cardproject />
+          <Contact />
+        </main>
+        <Footer />
       </div>
     </>
   );

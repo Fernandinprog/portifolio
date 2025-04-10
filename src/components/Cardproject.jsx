@@ -4,148 +4,125 @@ import NextLogo from "/next-js-logo.png";
 import TailwindLogo from "/twind-logo.png";
 import PostgresLogo from "/PostgreSQL_logo.png";
 import Fswbarber from "/fsw-barber.png";
+import FinanceAI from "/Finance-AI.png";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
+import { useEffect, useRef } from "react";
+
 gsap.registerPlugin(ScrollTrigger);
 
-gsap.from(".card", {
-  y: 400,
-  opacity: 0,
-  delay: 1.5,
-  duration: 2,
-});
-gsap.to(".card", {
-  y: 0,
-  opacity: 1,
-  scrollTrigger: {
-    trigger: ".start",
-    start: "top 90%",
-    end: "bottom 20%",
-    ease: "power1.in",
+const projetos = [
+  {
+    titulo: "FSW-barber",
+    imagem: Fswbarber,
+    tecnologias: [
+      { src: NextLogo, alt: "Next.js" },
+      { src: HtmlLogo, alt: "HTML5" },
+      { src: TailwindLogo, alt: "Tailwind CSS" },
+      { src: PostgresLogo, alt: "PostgreSQL" },
+    ],
+    link: "https://github.com/seu-usuario/fsw-barber",
   },
-});
+  {
+    titulo: "Finance AI",
+    imagem: FinanceAI,
+    tecnologias: [
+      { src: NextLogo, alt: "Next.js" },
+      { src: HtmlLogo, alt: "HTML5" },
+      { src: TailwindLogo, alt: "Tailwind CSS" },
+      { src: PostgresLogo, alt: "PostgreSQL" },
+    ],
+    link: "https://github.com/Fernandinprog/financ-ai",
+  },
+  // Adicione mais projetos aqui
+];
 
 const Cardproject = () => {
+  const cardsRef = useRef([]);
+
+  useEffect(() => {
+    cardsRef.current.forEach((card, index) => {
+      gsap.fromTo(
+        card,
+        {
+          opacity: 0,
+          y: 100,
+          scale: 0.8,
+          rotateX: 45,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          rotateX: 0,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: card,
+            start: "top bottom-=100",
+            end: "top center",
+            toggleActions: "play none none reverse",
+            // markers: true, // remova o comentário para debug
+          },
+          delay: index * 0.15, // escalonamento entre cards
+        },
+      );
+    });
+  }, []);
+
   return (
-    <>
-      <div className="flex h-[4000px] w-full flex-col items-center gap-4 bg-gradient-to-r from-zinc-800 to-zinc-900 p-4 lg:h-[1100px]">
-        <h1 className="start mb-8 text-3xl font-bold uppercase text-white">
+    <section
+      id="projects"
+      className="w-full bg-white py-20 dark:bg-gradient-to-r dark:from-zinc-800 dark:to-zinc-900"
+    >
+      <div className="container mx-auto px-4">
+        <h2 className="mb-12 text-center text-3xl font-bold uppercase text-zinc-900 md:text-4xl dark:text-white">
           Projetos
-        </h1>
-        <div className="start card grid w-full grid-cols-1 justify-items-center gap-4 lg:grid-cols-4 lg:justify-items-center">
-          <div className="mt-4 flex h-[420px] w-[300px] cursor-pointer flex-col items-center gap-4 rounded-md border-2 bg-zinc-900 p-4 duration-300 ease-in-out hover:border-fuchsia-600">
-            <h1 className="text-3xl text-white">FSW-barber</h1>
-            <img className="w-48 rounded-md" src={Fswbarber} alt="" />
-            <p className="text-white">
-              <div className="mt-1 flex items-center justify-center gap-2">
-                <img className="h-10 w-10 bg-white" src={NextLogo} alt="" />
-                <img className="h-8 w-8" src={HtmlLogo} alt="" />
-                <img className="h-10 w-10" src={TailwindLogo} alt="" />
-                <img className="h-10 w-10" src={PostgresLogo} alt="" />
-              </div>
-            </p>
-            <Github className="cursor-pointer text-white"></Github>
-          </div>
+        </h2>
 
-          <div className="mt-4 flex h-[420px] w-[300px] cursor-pointer flex-col items-center gap-4 rounded-md border-2 bg-zinc-900 p-4 duration-300 ease-in-out hover:border-fuchsia-600">
-            <h1 className="text-3xl text-white">FSW-barber</h1>
-            <img className="w-48 rounded-md" src={Fswbarber} alt="" />
-            <p className="text-white">
-              <div className="mt-1 flex items-center justify-center gap-2">
-                <img className="h-10 w-10 bg-white" src={NextLogo} alt="" />
-                <img className="h-8 w-8" src={HtmlLogo} alt="" />
-                <img className="h-10 w-10" src={TailwindLogo} alt="" />
-                <img className="h-10 w-10" src={PostgresLogo} alt="" />
-              </div>
-            </p>
-            <Github className="cursor-pointer text-white"></Github>
-          </div>
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {projetos.map((projeto, index) => (
+            <div
+              key={index}
+              ref={(el) => (cardsRef.current[index] = el)}
+              className="card perspective-1000 group relative flex h-[420px] w-full flex-col items-center gap-4 rounded-lg border-2 border-gray-200 bg-gray-50 p-4 transition-all duration-300 hover:border-fuchsia-500 hover:shadow-lg hover:shadow-fuchsia-500/20 dark:border-zinc-700 dark:bg-zinc-900"
+            >
+              <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">
+                {projeto.titulo}
+              </h3>
 
-          <div className="mt-4 flex h-[420px] w-[300px] cursor-pointer flex-col items-center gap-4 rounded-md border-2 bg-zinc-900 p-4 duration-300 ease-in-out hover:border-fuchsia-600">
-            <h1 className="text-3xl text-white">FSW-barber</h1>
-            <img className="w-48 rounded-md" src={Fswbarber} alt="" />
-            <p className="text-white">
-              <div className="mt-1 flex items-center justify-center gap-2">
-                <img className="h-10 w-10 bg-white" src={NextLogo} alt="" />
-                <img className="h-8 w-8" src={HtmlLogo} alt="" />
-                <img className="h-10 w-10" src={TailwindLogo} alt="" />
-                <img className="h-10 w-10" src={PostgresLogo} alt="" />
+              <div className="relative h-48 w-full overflow-hidden rounded-md">
+                <img
+                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  src={projeto.imagem}
+                  alt={projeto.titulo}
+                />
               </div>
-            </p>
-            <Github className="cursor-pointer text-white"></Github>
-          </div>
-          <div className="mt-4 flex h-[420px] w-[300px] cursor-pointer flex-col items-center gap-4 rounded-md border-2 bg-zinc-900 p-4 duration-300 ease-in-out hover:border-fuchsia-600">
-            <h1 className="text-3xl text-white">FSW-barber</h1>
-            <img className="w-48 rounded-md" src={Fswbarber} alt="" />
-            <p className="text-white">
-              <div className="mt-1 flex items-center justify-center gap-2">
-                <img className="h-10 w-10 bg-white" src={NextLogo} alt="" />
-                <img className="h-8 w-8" src={HtmlLogo} alt="" />
-                <img className="h-10 w-10" src={TailwindLogo} alt="" />
-                <img className="h-10 w-10" src={PostgresLogo} alt="" />
-              </div>
-            </p>
-            <Github className="cursor-pointer text-white"></Github>
-          </div>
 
-          <div className="mt-4 flex h-[420px] w-[300px] cursor-pointer flex-col items-center gap-4 rounded-md border-2 bg-zinc-900 p-4 duration-300 ease-in-out hover:border-fuchsia-600">
-            <h1 className="text-3xl text-white">FSW-barber</h1>
-            <img className="w-48 rounded-md" src={Fswbarber} alt="" />
-            <p className="text-white">
-              <div className="mt-1 flex items-center justify-center gap-2">
-                <img className="h-10 w-10 bg-white" src={NextLogo} alt="" />
-                <img className="h-8 w-8" src={HtmlLogo} alt="" />
-                <img className="h-10 w-10" src={TailwindLogo} alt="" />
-                <img className="h-10 w-10" src={PostgresLogo} alt="" />
+              <div className="flex flex-wrap items-center justify-center gap-2">
+                {projeto.tecnologias.map((tech, techIndex) => (
+                  <img
+                    key={techIndex}
+                    className="h-8 w-8 transition-transform hover:scale-110"
+                    src={tech.src}
+                    alt={tech.alt}
+                  />
+                ))}
               </div>
-            </p>
-            <Github className="cursor-pointer text-white"></Github>
-          </div>
 
-          <div className="mt-4 flex h-[420px] w-[300px] cursor-pointer flex-col items-center gap-4 rounded-md border-2 bg-zinc-900 p-4 duration-300 ease-in-out hover:border-fuchsia-600">
-            <h1 className="text-3xl text-white">FSW-barber</h1>
-            <img className="w-48 rounded-md" src={Fswbarber} alt="" />
-            <p className="text-white">
-              <div className="mt-1 flex items-center justify-center gap-2">
-                <img className="h-10 w-10 bg-white" src={NextLogo} alt="" />
-                <img className="h-8 w-8" src={HtmlLogo} alt="" />
-                <img className="h-10 w-10" src={TailwindLogo} alt="" />
-                <img className="h-10 w-10" src={PostgresLogo} alt="" />
-              </div>
-            </p>
-            <Github className="cursor-pointer text-white"></Github>
-          </div>
-
-          <div className="mt-4 flex h-[420px] w-[300px] cursor-pointer flex-col items-center gap-4 rounded-md border-2 bg-zinc-900 p-4 duration-300 ease-in-out hover:border-fuchsia-600">
-            <h1 className="text-3xl text-white">FSW-barber</h1>
-            <img className="w-48 rounded-md" src={Fswbarber} alt="" />
-            <p className="text-white">
-              <div className="mt-1 flex items-center justify-center gap-2">
-                <img className="h-10 w-10 bg-white" src={NextLogo} alt="" />
-                <img className="h-8 w-8" src={HtmlLogo} alt="" />
-                <img className="h-10 w-10" src={TailwindLogo} alt="" />
-                <img className="h-10 w-10" src={PostgresLogo} alt="" />
-              </div>
-            </p>
-            <Github className="cursor-pointer text-white"></Github>
-          </div>
-
-          <div className="mt-4 flex h-[420px] w-[300px] cursor-pointer flex-col items-center gap-4 rounded-md border-2 bg-zinc-900 p-4 duration-300 ease-in-out hover:border-fuchsia-600">
-            <h1 className="text-3xl text-white">FSW-barber</h1>
-            <img className="w-48 rounded-md" src={Fswbarber} alt="" />
-            <p className="text-white">
-              <div className="mt-1 flex items-center justify-center gap-2">
-                <img className="h-10 w-10 bg-white" src={NextLogo} alt="" />
-                <img className="h-8 w-8" src={HtmlLogo} alt="" />
-                <img className="h-10 w-10" src={TailwindLogo} alt="" />
-                <img className="h-10 w-10" src={PostgresLogo} alt="" />
-              </div>
-            </p>
-            <Github className="cursor-pointer text-white"></Github>
-          </div>
+              <a
+                href={projeto.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 text-zinc-900 transition-colors hover:text-fuchsia-500 dark:text-white"
+              >
+                <Github className="h-6 w-6" />
+              </a>
+            </div>
+          ))}
         </div>
       </div>
-    </>
+    </section>
   );
 };
 
